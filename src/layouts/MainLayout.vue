@@ -1,19 +1,17 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header >
+    <q-header class="bg-dark">
       <q-toolbar>
         <q-btn
           flat
           dense
           round
-          icon="menu"
+          v-if="$route.name !== 'home'"
+          icon="arrow_back_ios"
           aria-label="Menu"
-          @click="toggleLeftDrawer"
+          @click="$router.go(-1)"
         />
-
-        <q-toolbar-title>
-          Feedbax
-        </q-toolbar-title>
+        <q-toolbar-title> Feedbax </q-toolbar-title>
 
         <!-- <div>Quasar v{{ $q.version }}</div> -->
       </q-toolbar>
@@ -46,24 +44,27 @@
 </template>
 
 <script>
-
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
-  name: 'MainLayout',
+  name: "MainLayout",
 
-  components: {
-  },
+  components: {},
 
-  setup () {
-    const leftDrawerOpen = ref(false)
+  setup() {
+    const leftDrawerOpen = ref(false);
 
     return {
       leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-})
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+    };
+  },
+});
 </script>
+<style>
+.q-dialog__backdrop {
+  backdrop-filter: blur(3px);
+}
+</style>
